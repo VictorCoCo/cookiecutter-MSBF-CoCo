@@ -1,12 +1,11 @@
-import requests
+import httpx
 
 
 class AssistantSessionV2(object):
     def __init__(self, assistant_id, api_key,
                  base_url="https://api.eu-gb.assistant.watson.cloud.ibm.com" ,
                  version="2019-02-28"):
-        self.session = requests.session()
-        self.session.auth = ("apikey", api_key)
+        self.session = httpx.Client(auth=("apikey", api_key))
 
         self.base_url = base_url
         self.version = version
